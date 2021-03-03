@@ -8,6 +8,7 @@
     <code>
     	response = rm.sync_request_one("get","http://example.com")
     </code>
+	<br>
     **method (str):            [get, post , head, ...].**
     **url    (str):             page url.**
     **headers (str)[optional]: request headers.**
@@ -16,7 +17,10 @@
 
 2. ### sync_request_many(method,urls:list,headers="",workers=10)
     <code>
-    	urls = ["http://example.com","http://example.com","http://example.com","http://example.com","http://example.com"]
+		urls = ["http://example.com","http://example.com","http://example.com","http://example.com","http://example.com"]
+    </code>
+    <br>
+    <code>
     	response = rm.sync_request_one("get",urls,workers=20)
     </code>
     **urls (list): list of urls**
@@ -29,6 +33,7 @@
     <code>
     	response = rm.sync_request_one("get","http://example.com")  	
     </code>
+    <br>
     **method (str):            [get, post , head, ...].**
     **url    (str):             page url.**
     **headers (str)[optional]: request headers.**
@@ -37,7 +42,8 @@
 2.  ### content(response)
     <code>
     	response = rm.sync_request_one("get","http://example.com",content=False)  	
-    </code>    
+    </code>
+    <br>    
     <code>
     	content = rm.content(response)  	
     </code>
