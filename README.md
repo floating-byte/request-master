@@ -7,7 +7,6 @@
 </code>
 
 # Sync Requesting:
-
 1. ### sync_request_one(method,url,headers="")
     **method (str):            [get, post , head, ...].**
     <br>
@@ -22,7 +21,6 @@
 	</code>
 
 2. ### sync_request_many(method,urls:list,headers="",workers=10)
-    <br>
     **urls (list): list of urls**
     <br>
     **[more about Threading](https://realpython.com/intro-to-python-threading/)**
