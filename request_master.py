@@ -8,7 +8,7 @@ def sync_request_one(method,url,headers=""):
 	if headers != "":response = requests.request(method,url,headers=headers)
 	else:            response = requests.request(method,url)
 	return response
-def sync_request_many(method,urls:list,workers=10):
+def sync_request_many(method,urls:list,workers=10,headers=""):
 	async def request(loop,urls,length):
 		with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
 			futures = [
@@ -18,6 +18,7 @@ def sync_request_many(method,urls:list,workers=10):
 					sync_request_one,
 					method,
 					urls[i],
+					headers
 				)
 				for i in range(length)
 			]
@@ -30,27 +31,36 @@ def sync_request_many(method,urls:list,workers=10):
 	result = loop.run_until_complete(request(loop,urls,len(urls)))			
 	return result
 
-async def async_request(method,url):
+async def async_request(method,url,headers="",content=True):
 		async with aiohttp.ClientSession() as session:
-			async with session.request(method,url) as resp:
-				status_code = resp.status
-				response = await resp.text()
-				#return {"status":status_code,"content":response}
-				return resp
+			if headers != "":
+				async with session.request(method,url,headers=headers) as resp:
+					if content:
+						status_code = resp.status
+						response = await resp.text()
+						return {"status":status_code,"content":response}
+					return resp
+			else:
+				async with session.request(method,url) as resp:
+					if content:
+						status_code = resp.status
+						response = await resp.text()
+						return {"status":status_code,"content":response}
+					return resp
 def content(response):
 	async def get_content():
 		return await response.text()
 	loop = asyncio.get_event_loop()
 	return loop.run_until_complete(get_content())	
-def async_request_one(method,url):
+def async_request_one(method,url,headers="",content=True):
 	if type(url) != str:raise Exception("async_request_one works only with lists if u want to request one time use async_request_many()") 
 	loop = asyncio.get_event_loop()
-	return loop.run_until_complete(async_request(method,url))
-def async_request_many(method,urls:list):
+	return loop.run_until_complete(async_request(method,url,headers,content=True))
+def async_request_many(method,urls:list,headers="",content=True):
 	async def task_collector():
 		tasks = []
 		for i in urls:
-			tasks.append(asyncio.create_task(async_request(method,i)))
+			tasks.append(asyncio.create_task(async_request(method,i,headers,content)))
 		return await asyncio.gather(*tasks)
 		if type(urls) != list:raise Exception("async_request_many works only with lists if u want to request one time use async_request_one()")
 	loop = asyncio.get_event_loop()
