@@ -2,7 +2,7 @@ import requests
 import concurrent
 import asyncio
 import aiohttp
-
+ 
 def sync_request_one(method,url,headers=""):
 	if type(url) != str:raise Exception("sync_request_one works only with lists if u want to request one time use sync_request_many()") 
 	if headers != "":response = requests.request(method,url,headers=headers)
