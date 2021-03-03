@@ -9,7 +9,6 @@
 # Sync Requesting:
 
 1. ### sync_request_one(method,url,headers="")
-
     **method (str):            [get, post , head, ...].**
     <br>
     **url    (str):             page url.**
