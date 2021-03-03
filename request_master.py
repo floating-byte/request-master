@@ -33,20 +33,14 @@ def sync_request_many(method,urls:list,workers=10,headers=""):
 
 async def async_request(method,url,headers="",content=True):
 		async with aiohttp.ClientSession() as session:
-			if headers != "":
-				async with session.request(method,url,headers=headers) as resp:
-					if content:
-						status_code = resp.status
-						response = await resp.text()
-						return {"status":status_code,"content":response}
-					return resp
-			else:
-				async with session.request(method,url) as resp:
-					if content:
-						status_code = resp.status
-						response = await resp.text()
-						return {"status":status_code,"content":response}
-					return resp
+			if headers == "":
+				headers = {}
+			async with session.request(method,url,headers=headers) as resp:
+				if content:
+					status_code = resp.status
+					response = await resp.text()
+					return {"status":status_code,"content":response}
+				return resp
 def content(response):
 	async def get_content():
 		return await response.text()
