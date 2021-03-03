@@ -49,7 +49,7 @@ def content(response):
 def async_request_one(method,url,headers="",content=True):
 	if type(url) != str:raise Exception("async_request_one works only with lists if u want to request one time use async_request_many()") 
 	loop = asyncio.get_event_loop()
-	return loop.run_until_complete(async_request(method,url,headers,content=True))
+	return loop.run_until_complete(async_request(method,url,headers,content))
 def async_request_many(method,urls:list,headers="",content=True):
 	async def task_collector():
 		tasks = []
