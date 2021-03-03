@@ -7,7 +7,9 @@
 1. ### sync_request_one(method,url,headers="")
 
     **method (str):            [get, post , head, ...].**
+    <br>
     **url    (str):             page url.**
+    <br>
     **headers (str)[optional]: request headers.**
     * use this to request one web page.
     * return a request obj 
