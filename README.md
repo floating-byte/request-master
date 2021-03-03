@@ -1,8 +1,11 @@
-# Sync Requesting:
-
 <code>
    	import request_master as rm
 </code>
+<br>
+<code>
+	urls = ["http://example.com","http://example.com","http://example.com","http://example.com","http://example.com"]
+</code>
+# Sync Requesting:
 
 1. ### sync_request_one(method,url,headers="")
 
@@ -27,8 +30,6 @@
     * this def uses Threading , use this to send more then a request.
     * more workers , more cpu power ,faster responses.     
     <br>
-	<code>urls = ["http://example.com","http://example.com","http://example.com","http://example.com","http://example.com"]</code>
-    <br>
 	<code>response = rm.sync_request_one("get",urls,workers=20)</code>
 
 # Async Requesting:
@@ -45,8 +46,8 @@
 	<code>response = rm.sync_request_one("get","http://example.com")</code>
 
 2.  ### content(response)
-    <br>
     **response (aihttp response obj): response**
+    <br>
     * if u have response as aihttp obj this will return the content of the page
     <br>
 	<code>response = rm.sync_request_one("get","http://example.com",content=False)</code>
@@ -54,12 +55,11 @@
 	<code>content = rm.content(response)</code>
 
 3. ### async_request_many(method,urls:list,headers="",content=True)
-    <br>    
     **urls (list): list of urls**
+    <br>
     **[more about asyncio](https://docs.python.org/3/library/asyncio-task.html)**
+    
     * faster responses
     * uses the asyncio methods and retrun response
 	<br>
-	<code>urls = ["http://example.com","http://example.com","http://example.com","http://example.com","http://example.com"]</code>
-    <br>
 	<code>response = rm.async_request_many("get",urls)</code>
