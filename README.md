@@ -5,15 +5,15 @@
 </code>
 
 1. ### sync_request_one(method,url,headers="")
-<code>
-response = rm.sync_request_one("get","http://example.com")
-</code>
-	<br>
+
     **method (str):            [get, post , head, ...].**
     **url    (str):             page url.**
     **headers (str)[optional]: request headers.**
     * use this to request one web page.
     * return a request obj 
+	<code>
+	response = rm.sync_request_one("get","http://example.com")
+	</code>
 
 2. ### sync_request_many(method,urls:list,headers="",workers=10)
 <code>
