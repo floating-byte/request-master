@@ -1,7 +1,7 @@
 import request_master as rm
 from pprint import pprint 
 url = "http://example.com"
-urls = [url,url,url,url,url,url,url,url,url,url,url,url,url]
+urls = [url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url,url]
 
 
 def sync_request_one():
@@ -37,7 +37,7 @@ def	async_request_many_no_content():
 	pprint(responses)
 	print("the type is",type(responses))
 
-sync_request_one()
+#sync_request_one()
 #sync_request_many()
 
 #async_request_one_content()
@@ -45,4 +45,4 @@ sync_request_one()
 #async_request_one_no_content()
 
 #async_request_many_no_content()
-#async_request_many_content()
+async_request_many_content()
