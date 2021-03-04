@@ -8,6 +8,7 @@ def sync_request_one(method,url,headers=""):
 	if headers != "":response = requests.request(method,url,headers=headers)
 	else:            response = requests.request(method,url)
 	return response
+	
 def sync_request_many(method,urls:list,workers=10,headers=""):
 	async def request(loop,urls,length):
 		with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
@@ -39,7 +40,7 @@ async def async_request(method,url,headers="",content=True):
 				if content:
 					status_code = resp.status
 					response = await resp.text()
-					return {"status":status_code,"content":response}
+					return {"status":status_code,"content":response,"url":url}
 				return resp
 def content(response):
 	async def get_content():
