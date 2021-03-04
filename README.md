@@ -41,7 +41,7 @@
     **headers (str)[optional]: request headers.**
     
     * if content == False : return a aihttp obj
-    * if content == True : return a json ```{"status":xxx,"content":page html}```
+    * if content == True : return a json ```{"status":xxx,"content":page html , "url":url}```
 	<br>
 	<code>response = rm.sync_request_one("get","http://example.com")</code>
 
