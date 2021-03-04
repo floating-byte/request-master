@@ -39,12 +39,12 @@ async def async_request(method,url,headers="",content=True):
 			async with session.request(method,url,headers=headers) as resp:
 				if content:
 					status_code = resp.status
-					response = await resp.text()
+					response = await resp.read()
 					return {"status":status_code,"content":response,"url":url}
 				return resp
 def content(response):
 	async def get_content():
-		return await response.text()
+		return await response.read()
 	loop = asyncio.get_event_loop()
 	return loop.run_until_complete(get_content())	
 def async_request_one(method,url,headers="",content=True):
